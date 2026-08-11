@@ -1,750 +1,1052 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="ru" class="scroll-smooth">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Milana — тату-мастер в Томске</title>
-  <meta name="description" content="Милана — тату-мастер в Томске с опытом 6 лет. Портфолио работ, отзывы клиентов и запись на сеанс.">
-  <meta property="og:title" content="Milana — тату-мастер в Томске">
-  <meta property="og:description" content="Портфолио работ, отзывы клиентов и запись на сеанс.">
-  <meta property="og:type" content="website">
-  <meta property="og:locale" content="ru_RU">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
-  <style>
-    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-    :root {
-      --bg-primary: #0B0B;
-      --bg-secondary: #111111;
-      --bg-card: #181818;
-      --text-primary: #F5F0;
-      --text-secondary: #A0A09A;
-      --text-muted: #6B6B65;
-      --accent: #8C7B6B;
-     --accent-hover: #A08E7D;
-      --border: rgba(245, 240, 0.08);
-      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      --font-serif: 'Playfair Display', Georgia, serif;
-      --header-height: 72px;
-      --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
-    body { font-family: var(--font-sans); background: var(--bg-primary); color: var(--text-primary); font-size: 16px; line-height: 1.6; overflow-x: hidden; }
-    img { display: block; max-width: 100%; height: auto; }
-    a { color: inherit; text-decoration: none; }
-    button { cursor: pointer; border: none; background: none; color: inherit; font-family: inherit; }
-    @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-    @keyframes scaleIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
-    .animate-on-scroll { opacity: 0; transform: translateY(30px); transition: opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1), transform 0.7s cubic-bezier(0.4, 0, 0.2, 1); }
-    .animate-on-scroll.is-visible { opacity: 1; transform: translateY(0); }
-    .header { position: fixed; top: 0; left: 0; right: 0; z-index: 10; height: var(--header-height); background: rgba(11, 11, 11, 0.6); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid transparent; transition: var(--transition); }
-    .header.scrolled { background: rgba(11, 11, 11, 0.92); border-bottom-color: var(--border); }
-    .header__inner { max-width: 1400px; margin: 0 auto; padding: 0 40px; height: 100%; display: flex; align-items: center; justify-content: space-between; }
-   .header__logo { font-family: var(--font-sans); font-size: 14px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-primary); transition: var(--transition); }
-    .header__logo:hover { color: var(--accent-hover); }
-    .header__nav { display: flex; gap: 36px; }
-    .header__link { font-size: 13px; font-weight: 400; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-secondary); transition: var(--transition); position: relative; }
-    .header__link::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1px; background: var(--text-primary); transition: width 0.3s ease; }
-    .header__link:hover { color: var(--text-primary); }
-    .header__link:hover::after { width: 100%; }
-    .header__burger { display: none; flex-direction: column; gap: 5px; padding: 8px; }
-    .header__burger span { display: block; width: 22px; height: 1.5px; background: var(--text-primary); transition: var(--transition); transform-origin: center; }
-    .header__burger.active span:nth-child(1) { transform: rotate(45deg) translate(4px, 5px); }
-    .header__burger.active span:nth-child(2) { opacity: 0; }
-   .header__burger.active span:nth-child(3) { transform: rotate(-45deg) translate(4px, -5px); }
-   .nav-overlay { position: fixed; inset: 0; z-index: 99; background: rgba(11, 11, 0.97); backdrop-filter: blur(30px); display: flex; align-items: center; justify-content: center; opacity: 0; visibility: hidden; transition: var(--transition); }
-    .nav-overlay.is-open { opacity: 1; visibility: visible; }
-    .nav-overlay__inner { display: flex; flex-direction: column; align-items: center; gap: 32px; }
-    .nav-overlay__link { font-family: var(--font-serif); font-size: 32px; color: var(--text-primary); transition: var(--transition); transform: translateY(20px); opacity: 0; transition: opacity 0.4s ease, transform 0.4s ease, color 0.3s ease; }
-    .nav-overlay.is-open .nav-overlay__link { transform: translateY(0); opacity: 1; }
-   .nav-overlay.is-open .nav-overlay__link:nth-child(1) { transition-delay: 0.1s; }
-    .nav-overlay.is-open .nav-overlay__link:nth-child(2) { transition-delay: 0.15s; }
-    .nav-overlay.is-open .nav-overlay__link:nth-child(3) { transition-delay: 0.2s; }
-    .nav-overlay.is-open .nav-overlay__link:nth-child(4) { transition-delay: 0.25s; }
-    .nav-overlay__link:hover { color: var(--accent-hover); }
-    .hero { min-height: 100vh; padding-top: var(--header-height); display: flex; align-items: center; }
-    .hero__inner { max-width: 1400px; margin: 0 auto; padding: 60px 40px; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; width: 100%; }
-   .hero__content { animation: fadeInUp 0.8s cubic-bezier(0.4, 0.2, 1) forwards; }
-    .hero__title { margin-bottom: 32px; }
-    .hero__name { display: block; font-family: var(--font-sans); font-size: clamp(48px, 7vw, 96px); font-weight: 30; letter-spacing: 0.15em; text-transform: uppercase; line-height: 1; color: var(--text-primary); }
-    .hero__subtitle { display: block; font-family: var(--font-sans); font-size: clamp(14px, 1.8vw, 18px); font-weight: 300; letter-spacing: 0.35em; text-transform: uppercase; color: var(--text-secondary); margin-top: 16px; }
-   .hero__meta { display: flex; align-items: center; gap: 16px; margin-bottom: 48px; font-size: 13px; letter-spacing: 0.1em; color: var(--text-muted); }
-   .hero__dot { width: 4px; height: 4px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
-   .hero__actions { display: flex; gap: 16px; flex-wrap: wrap; }
-   .btn { display: inline-flex; align-items: center; justify-content: center; padding: 16px 36px; font-size: 12px; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; border-radius: 0; transition: var(--transition); cursor: pointer; }
-    .btn--primary { background: var(--text-primary); color: var(--bg-primary); border: 1px solid var(--text-primary); }
-   .btn--primary:hover { background: var(--accent-hover); border-color: var(--accent-hover); }
-   .btn--outline { background: transparent; color: var(--text-primary); border: 1px solid var(--border); }
-    .btn--outline:hover { border-color: var(--text-primary); background: rgba(245, 245, 240, 0.04); }
-    .hero__image { animation: scaleIn 0.9s cubic-bezier(0.4, 0, 0.2, 1) 0.2s forwards; opacity: 0; }
-    .hero__image img { width: 100%; height: 70vh; max-height: 70px; object-fit: cover; object-position: center; border-radius: 2px; }
-    .stats { padding: 60px 40px; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-    .stats__inner { max-width: 1400px; margin: 0 auto; display: flex; align-items: center; justify-content: center; gap: 48px; }
-    .stats__item { display: flex; flex-direction: column; align-items: center; gap: 8px; }
-    .stats__number { font-family: var(--font-serif); font-size: clamp(32px, 4vw, 48px); font-weight: 400; color: var(--text-primary); line-height: 1; }
-    .stats__label { font-size: 1px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-muted); }
-    .stats__divider { width: 1px; height: 48px; background: var(--border); flex-shrink: 0; }
-    .section-title { font-family: var(--font-sans); font-size: clamp(28px, 3.5vw, 42px); font-weight: 300; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-primary); margin-bottom: 12px; }
-    .section-subtitle { font-family: var(--font-serif); font-size: clamp(16px, 2vw, 20px); font-weight: 400; font-style: italic; color: var(--text-secondary); }
-    .portfolio { padding: 100px 40px; max-width: 1400px; margin: 0 auto; }
-    .portfolio__header { margin-bottom: 60px; }
-    .portfolio__grid { display: grid; grid-template-columns: repeat(12, 1fr); grid-auto-rows: auto; gap: 16px; }
-    .portfolio__item { overflow: hidden; border-radius: 2px; cursor: pointer; position: relative; }
-    .portfolio__item::after { content: ''; position: absolute; inset: 0; background: rgba(11, 11, 11, 0); transition: background 0.4s ease; pointer-events: none; }
-    .portfolio__item:hover::after { background: rgba(11, 11, 11, 0.15); }
-    .portfolio__item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1); display: block; }
-    .portfolio__item:hover img { transform: scale(1.03); }
-    .portfolio__item--large { grid-column: span 7; grid-row: span 2; min-height: 500px; }
-    .portfolio__item--large img { min-height: 500px; }
-    .portfolio__item--wide { grid-column: span 12; min-height: 350px; }
-    .portfolio__item--wide img { min-height: 350px; }
-    .portfolio__item:not(.portfolio__item--large):not(.portfolio__item--wide) { min-height: 280px; }
-    .portfolio__item:not(.portfolio__item--large):not(.portfolio__item--wide) img { min-height: 280px; }
-    .about { padding: 100px 40px; background: var(--bg-secondary); }
-    .about__inner { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
-    .about__content { padding-top: 20px; }
-    .about__text { display: flex; flex-direction: column; gap: 20px; }
-    .about__text p { font-size: clamp(15px, 1.5vw, 17px); line-height: 1.8; color: var(--text-secondary); font-weight: 300; }
-    .about__text p:first-child { font-size: clamp(17px, 1.8vw, 20px); color: var(--text-primary); font-weight: 400; }
-    .process { padding: 100px 40px; max-width: 1400px; margin: 0 auto; }
-    .process__steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; margin-top: 60px; }
-    .process__step { padding-top: 24px; border-top: 1px solid var(--border); }
-    .process__step-num { display: block; font-family: var(--font-serif); font-size: 14px; color: var(--accent); margin-bottom: 20px; letter-spacing: 0.05em; }
-    .process__step-title { font-family: var(--font-sans); font-size: 16px; font-weight: 500; letter-spacing: 0.05em; color: var(--text-primary); margin-bottom: 12px; }
-    .process__step p { font-size: 14px; line-height: 1.7; color: var(--text-secondary); font-weight: 300; }
-    .reviews { padding: 100px 40px; background: var(--bg-secondary); overflow: hidden; }
-    .reviews__inner { max-width: 1400px; margin: 0 auto; }
-    .reviews__header { margin-bottom: 60px; }
-    .reviews__rating { display: flex; align-items: center; gap: 20px; margin-top: 20px; }
-    .reviews__score { font-family: var(--font-serif); font-size: 48px; font-weight: 400; color: var(--text-primary); line-height: 1; }
-    .reviews__stars { font-size: 18px; letter-spacing: 4px; color: var(--accent); }
-    .reviews__count { font-size: 13px; color: var(--text-muted); letter-spacing: 0.05em; }
-    .reviews__slider { overflow: hidden; margin-bottom: 32px; }
-    .reviews__track { display: flex; gap: 24px; transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1); }
-    .review-card { flex: 0 0 calc(33.333% - 16px); min-width: 0; padding: 36px; background: var(--bg-card); border: 1px solid var(--border); border-radius: 2px; transition: var(--transition); }
-    .review-card:hover { border-color: rgba(245, 245, 240, 0.15); }
-    .review-card__text { font-family: var(--font-serif); font-size: 15px; line-height: 1.8; color: var(--text-secondary); font-style: italic; margin-bottom: 24px; }
-    .review-card__author { display: flex; flex-direction: column; gap: 4px; }
-    .review-card__name { font-size: 13px; font-weight: 500; letter-spacing: 0.05em; color: var(--text-primary); }
-    .review-card__date { font-size: 12px; color: var(--text-muted); }
-    .reviews__controls { display: flex; gap: 12px; }
-    .reviews__btn { width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; border: 1px solid var(--border); border-radius: 50%; transition: var(--transition); color: var(--text-secondary); }
-    .reviews__btn:hover { border-color: var(--text-primary); color: var(--text-primary); background: rgba(245, 245, 240, 0.04); }
-    .why { padding: 100px 40px; max-width: 1400px; margin: 0 auto; }
-    .why__grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; margin-top: 60px; }
-    .why__item { padding: 32px; border: 1px solid var(--border); border-radius: 2px; transition: var(--transition); }
-    .why__item:hover { border-color: rgba(245, 245, 240, 0.15); background: rgba(245, 245, 240, 0.02); }
-    .why__item-num { display: block; font-family: var(--font-serif); font-size: 14px; color: var(--accent); margin-bottom: 20px; }
-    .why__item-title { font-size: 16px; font-weight: 500; letter-spacing: 0.03em; color: var(--text-primary); margin-bottom: 12px; }
-    .why__item p { font-size: 14px; line-height: 1.7; color: var(--text-secondary); font-weight: 300; }
-    .cta { padding: 120px 40px; background: var(--bg-secondary); text-align: center; position: relative; overflow: hidden; }
-    .cta::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at center, rgba(140, 123, 107, 0.06) 0%, transparent 70%); pointer-events: none; }
-    .cta__inner { position: relative; max-width: 700px; margin: 0 auto; }
-    .cta__title { font-family: var(--font-sans); font-size: clamp(28px, 4vw, 48px); font-weight: 300; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-primary); line-height: 1.3; margin-bottom: 16px; }
-    .cta__text { font-family: var(--font-serif); font-size: clamp(16px, 2vw, 20px); font-style: italic; color: var(--text-secondary); margin-bottom: 40px; }
-    .cta__actions { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
-    .contact { padding: 100px 40px; max-width: 1400px; margin: 0 auto; }
-    .contact__city { font-family: var(--font-serif); font-size: clamp(20px, 2.5vw, 28px); font-style: italic; color: var(--text-secondary); margin: 16px 0 48px; }
-   .contact__links { display: flex; flex-direction: column; gap: 20px; max-width: 400px; }
-    .contact__link { display: flex; align-items: center; justify-content: space-between; padding: 20px 24px; border: 1px solid var(--border); border-radius: 2px; transition: var(--transition); }
-    .contact__link:hover { border-color: rgba(245, 245, 240, 0.2); background: rgba(245, 245, 240, 0.02); }
-    .contact__link-label { font-size: 14px; font-weight: 500; letter-spacing: 0.05em; color: var(--text-primary); }
-    .contact__link-hint { font-size: 12px; color: var(--text-muted); font-style: italic; }
-    .footer { padding: 60px 40px; border-top: 1px solid var(--border); }
-    .footer__inner { max-width: 1400px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; gap: 32px; }
-    .footer__brand { display: flex; flex-direction: column; align-items: center; gap: 4px; }
-   .footer__name { font-size: 14px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; }
-    .footer__tagline { font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--text-muted); }
-    .footer__nav { display: flex; gap: 32px; flex-wrap: wrap; justify-content: center; }
-    .footer__nav a { font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-secondary); transition: var(--transition); }
-    .footer__nav a:hover { color: var(--text-primary); }
-    .footer__copy { font-size: 12px; color: var(--text-muted); letter-spacing: 0.05em; }
-    .lightbox { position: fixed; inset: 0; z-index: 200; background: rgba(5, 5, 5, 0.96); display: flex; align-items: center; justify-content: center; opacity: 0; visibility: hidden; transition: opacity 0.3s ease, visibility 0.3s ease; cursor: pointer; }
-    .lightbox.is-open { opacity: 1; visibility: visible; }
-    .lightbox__content { position: relative; max-width: 90vw; max-height: 90vh; display: flex; align-items: center; justify-content: center; cursor: default; }
-    .lightbox__img { max-width: 90vw; max-height: 90vh; object-fit: contain; border-radius: 2px; animation: scaleIn 0.3s ease; }
-    .lightbox__close { position: absolute; top: 24px; right: 24px; z-index: 201; width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; color: var(--text-primary); transition: var(--transition); cursor: pointer; }
-    .lightbox__close:hover { transform: rotate(90deg); }
-    .lightbox__prev, .lightbox__next { position: absolute; top: 50%; transform: translateY(-50%); z-index: 201; width: 56px; height: 56px; display: flex; align-items: center; justify-content: center; color: var(--text-primary); border: 1px solid var(--border); border-radius: 50%; transition: var(--transition); cursor: pointer; background: rgba(11, 11, 0.5); }
-    .lightbox__prev:hover, .lightbox__next:hover { border-color: var(--text-primary); background: rgba(11, 11, 0.8); }
-    .lightbox__prev { left: 24px; }
-    .lightbox__next { right: 24px; }
-    @media (max-width: 1024px) {
-      .header__inner { padding: 0 24px; }
-      .hero__inner { padding: 40px 24px; gap: 40px; }
-     .portfolio { padding: 80px 24px; }
-      .about__inner { gap: 48px; }
-     .process__steps { grid-template-columns: repeat(2, 1fr); gap: 32px; }
-      .why__grid { grid-template-columns: repeat(2, 1fr); gap: 24px; }
-      .review-card { flex: 0 0 calc(50% - 12px); }
-    }
-    @media (max-width: 768px) {
-      :root { --header-height: 64px; }
-      .header__nav { display: none; }
-      .header__burger { display: flex; }
-      .hero__inner { grid-template-columns: 1fr; gap: 40px; padding: 80px 24px 40px; }
-      .hero__image { order: -1; }
-      .hero__image img { height: 40vh; max-height: 400px; }
-      .hero__actions { flex-direction: column; }
-      .btn { width: 100%; text-align: center; }
-      .stats__inner { gap: 24px; flex-wrap: wrap; justify-content: center; }
-      .stats__divider { display: none; }
-      .portfolio__grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
-      .portfolio__item--large { grid-column: span 2; grid-row: span 1; min-height: 300px; }
-      .portfolio__item--large img { min-height: 300px; }
-      .portfolio__item--wide { grid-column: span 2; min-height: 250px; }
-      .portfolio__item--wide img { min-height: 250px; }
-      .portfolio__item:not(.portfolio__item--large):not(.portfolio__item--wide) { min-height: 200px; }
-      .portfolio__item:not(.portfolio__item--large):not(.portfolio__item--wide) img { min-height: 200px; }
-      .about__inner { grid-template-columns: 1fr; gap: 40px; }
-      .process__steps { grid-template-columns: 1fr; gap: 32px; }
-      .review-card { flex: 0 0 calc(100% - 0px); }
-      .why__grid { grid-template-columns: 1fr; gap: 16px; }
-      .cta { padding: 80px 24px; }
-      .contact { padding: 80px 24px; }
-      .footer { padding: 48px 24px; }
-      .lightbox__prev { left: 12px; width: 44px; height: 44px; }
-      .lightbox__next { right: 12px; width: 44px; height: 44px; }
-    }
-    @media (max-width: 480px) {
-      .hero__inner { padding: 72px 20px 32px; }
-      .hero__meta { flex-direction: column; align-items: flex-start; gap: 8px; }
-      .hero__dot { display: none; }
-      .stats { padding: 40px 20px; }
-      .portfolio { padding: 60px 20px; }
-      .about { padding: 60px 20px; }
-      .process { padding: 60px 20px; }
-      .reviews { padding: 60px 20px; }
-      .why { padding: 60px 20px; }
-      .contact { padding: 60px 20px; }
-      .review-card { padding: 24px; }
-      .contact__links { max-width: 100%; }
-    }
-    @media (max-width: 360px) {
-      .hero__name { letter-spacing: 0.08em; }
-      .hero__subtitle { letter-spacing: 0.2em; }
-      .section-title { letter-spacing: 0.1em; }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Milana — Тату-мастер в Томске | Портфолио и Запись</title>
+    <meta name="description" content="Милана — профессиональный тату-мастер в Томске с опытом 6 лет. Художественная татуировка, индивидуальные эскизы, аккуратность и уютная атмосфера. Портфолио и отзывы.">
+    
+    <!-- Open Graph Tags -->
+    <meta property="og:title" content="Milana — Тату-мастер в Томске">
+    <meta property="og:description" content="Премиальное тату-портфолио мастера Миланы. 6 лет опыта, рейтинг 5.0, уникальный подход к каждой идее.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="1.jpg">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            bg: '#0B0B0B',
+                            card: '#121212',
+                            elevated: '#181818',
+                            border: '#262626',
+                            text: '#F5F5F0',
+                            muted: '#A1A1AA',
+                            accent: '#9E2A2B', // Subdued burgundy red
+                            accentGlow: 'rgba(158, 42, 43, 0.25)',
+                            gold: '#D4AF37'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        serif: ['"Cormorant Garamond"', 'serif']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0B0B0B;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #262626;
+            border-radius: 3px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #3F3F46;
+        }
+
+        /* Editorial typography & glassmorphism */
+        .glass-panel {
+            background: rgba(18, 18, 18, 0.75);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.07);
+        }
+
+        .glass-nav {
+            background: rgba(11, 11, 11, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+
+        .text-gradient {
+            background: linear-gradient(135deg, #FFFFFF 0%, #A1A1AA 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .text-accent-gradient {
+            background: linear-gradient(135deg, #F5F5F0 30%, #C89B9C 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Ambient Glow Effect */
+        .ambient-glow {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(120px);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Smooth reveal animation classes */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Custom image zoom hover effect */
+        .img-zoom-container {
+            overflow: hidden;
+        }
+        .img-zoom-container img {
+            transition: transform 0.7s cubic-bezier(0.25, 1, 0.5, 1), filter 0.5s ease;
+        }
+        .img-zoom-container:hover img {
+            transform: scale(1.04);
+            filter: brightness(1.08);
+        }
+
+        /* Custom rating stars animation */
+        .star-glow {
+            text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+        }
+    </style>
 </head>
-<body>
+<body class="bg-brand-bg text-brand-text font-sans antialiased selection:bg-brand-accent selection:text-white relative overflow-x-hidden">
 
-  <header class="header">
-    <div class="header__inner">
-      <a href="#" class="header__logo">MILANA</a>
-      <nav class="header__nav">
-        <a href="#works">Работы</a>
-        <a href="#about">О мастере</a>
-        <a href="#reviews">Отзывы</a>
-        <a href="#contact">Запись</a>
-      </nav>
-      <button class="header__burger" aria-label="Меню">
-        <span></span><span></span><span></span>
-      </button>
-    </div>
-  </header>
+    <!-- Ambient Lighting Effects -->
+    <div class="ambient-glow bg-brand-accentGlow w-[400px] h-[400px] -top-20 -right-20 opacity-40"></div>
+    <div class="ambient-glow bg-zinc-800/40 w-[500px] h-[500px] top-1/3 -left-40 opacity-30"></div>
 
-  <div class="nav-overlay">
-    <nav class="nav-overlay__inner">
-      <a href="#works">Работы</a>
-      <a href="#about">О мастере</a>
-      <a href="#reviews">Отзывы</a>
-      <a href="#contact">Запись</a>
-    </nav>
-  </div>
+    <!-- HEADER -->
+    <header id="main-header" class="fixed top-0 left-0 right-0 z-40 transition-all duration-300 border-b border-white/5 glass-nav">
+        <div class="max-w-7xl mx-auto px-6 sm:px-8 h-20 flex items-center justify-between">
+            <!-- Logo -->
+            <a href="#" class="group flex items-center gap-3">
+                <span class="font-serif text-2xl tracking-[0.2em] font-light uppercase text-brand-text group-hover:text-white transition-colors">MILANA</span>
+                <span class="text-xs uppercase tracking-widest text-brand-muted font-sans border-l border-white/10 pl-3 py-0.5">Tattoo Artist</span>
+            </a>
 
-  <section class="hero">
-    <div class="hero__inner">
-      <div class="hero__content">
-        <h1 class="hero__title">
-          <span class="hero__name">MILANA</span>
-          <span class="hero__subtitle">TATTOO ARTIST</span>
-        </h1>
-        <div class="hero__meta">
-          <span>6 YEARS OF EXPERIENCE</span>
-          <span class="hero__dot"></span>
-          <span>TOMSK</span>
-        </div>
-        <div class="hero__actions">
-          <a href="#contact" class="btn btn--primary">Записаться на сеанс</a>
-          <a href="#works" class="btn btn--outline">Смотреть работы</a>
-        </div>
-      </div>
-      <div class="hero__image">
-        <img src="7.jpg" alt="Татуировка, выполненная мастером Миланой">
-      </div>
-    </div>
-  </section>
+            <!-- Desktop Nav -->
+            <nav class="hidden md:flex items-center space-x-10">
+                <a href="#portfolio" class="text-sm uppercase tracking-widest text-brand-muted hover:text-brand-text transition-colors duration-200">Работы</a>
+                <a href="#about" class="text-sm uppercase tracking-widest text-brand-muted hover:text-brand-text transition-colors duration-200">О мастере</a>
+                <a href="#process" class="text-sm uppercase tracking-widest text-brand-muted hover:text-brand-text transition-colors duration-200">Процесс</a>
+                <a href="#reviews" class="text-sm uppercase tracking-widest text-brand-muted hover:text-brand-text transition-colors duration-200">Отзывы</a>
+                <a href="#booking" class="text-sm uppercase tracking-widest text-brand-muted hover:text-brand-text transition-colors duration-200">Контакты</a>
+            </nav>
 
-  <section class="stats">
-    <div class="stats__inner">
-      <div class="stats__item">
-        <span class="stats__number">6+</span>
-        <span class="stats__label">лет опыта</span>
-      </div>
-      <div class="stats__divider"></div>
-      <div class="stats__item">
-        <span class="stats__number">23</span>
-        <span class="stats__label">отзыва</span>
-      </div>
-      <div class="stats__divider"></div>
-      <div class="stats__item">
-        <span class="stats__number">5.0</span>
-        <span class="stats__label">средняя оценка</span>
-      </div>
-      <div class="stats__divider"></div>
-      <div class="stats__item">
-        <span class="stats__number">∞</span>
-        <span class="stats__label">идей</span>
-      </div>
-    </div>
-  </section>
-
-  <section class="portfolio" id="works">
-    <div class="portfolio__header">
-      <h2 class="section-title">РАБОТЫ</h2>
-      <p class="section-subtitle">Татуировки, созданные Миланой</p>
-    </div>
-    <div class="portfolio__grid">
-      <div class="portfolio__item portfolio__item--large" data-index="0">
-        <img src="1.jpg" alt="Татуировка, выполненная мастером Миланой">
-      </div>
-      <div class="portfolio__item" data-index="1">
-        <img src="2.jpg" alt="Татуировка, выполненная мастером Миланой">
-      </div>
-      <div class="portfolio__item" data-index="2">
-        <img src="3.jpg" alt="Татуировка, выполненная мастером Миланой">
-      </div>
-      <div class="portfolio__item portfolio__item--wide" data-index="3">
-        <img src="4.jpg" alt="Татуировка, выполненная мастером Миланой">
-      </div>
-      <div class="portfolio__item" data-index="4">
-        <img src="5.jpg" alt="Татуировка, выполненная мастером Миланой">
-      </div>
-      <div class="portfolio__item" data-index="5">
-        <img src="6.jpg" alt="Татуировка, выполненная мастером Миланой">
-      </div>
-      <div class="portfolio__item portfolio__item--large" data-index="6">
-        <img src="7.jpg" alt="Татуировка, выполненная мастером Миланой">
-      </div>
-    </div>
-  </section>
-
-  <section class="about" id="about">
-    <div class="about__inner">
-      <div class="about__content">
-        <h2 class="section-title">О МАСТЕРЕ</h2>
-        <div class="about__text">
-         <p>Меня зовут Милана. Я тату-мастер с опытом 6 лет.</p>
-          <p>Для меня татуировка — это не просто рисунок на коже, а история, идея и настроение, которые человек выбирает оставить с собой.</p>
-          <p>Я внимательно отношусь к задумке каждого клиента, помогаю доработать идею и стараюсь сделать каждый сеанс максимально комфортным.</p>
-         <p>Мне важно, чтобы человек ушёл не только с красивой татуировкой, но и с приятными впечатлениями от самого процесса.</p>
-        </div>
-     </div>
-    </div>
-  </section>
-
-  <section class="process">
-    <div class="process__inner">
-      <h2 class="section-title">КАК ПРОХОДИТ СЕАНС</h2>
-      <div class="process__steps">
-        <div class="process__step">
-          <span class="process__step-num">01</span>
-          <h3 class="process__step-title">Обсуждаем идею</h3>
-          <p>Обсуждаем задумку, размер, расположение и детали будущей татуировки.</p>
-        </div>
-        <div class="process__step">
-          <span class="process__step-num">02</span>
-          <h3 class="process__step-title">Подбираем эскиз</h3>
-          <p>Дорабатываем идею и приходим к варианту, который подходит именно вам.</p>
-        </div>
-        <div class="process__step">
-          <span class="process__step-num">03</span>
-          <h3 class="process__step-title">Создаём</h3>
-          <p>Спокойная атмосфера, аккуратная работа и внимание к деталям.</p>
-        </div>
-        <div class="process__step">
-         <span class="process__step-num">04</span>
-         <h3 class="process__step-title">Готово</h3>
-          <p>Вы получаете татуировку, которую действительно хотели.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="reviews" id="reviews">
-    <div class="reviews__inner">
-      <div class="reviews__header">
-        <h2 class="section-title">ОТЗЫВЫ КЛИЕНТОВ</h2>
-        <div class="reviews__rating">
-          <span class="reviews__score">5.0</span>
-          <div class="reviews__stars">★★★★★</div>
-          <span class="reviews__count">23 отзыва</span>
-        </div>
-      <div class="reviews__slider">
-        <div class="reviews__track">
-
-          <div class="review-card">
-            <p class="review-card__text">«Работа невероятна, общение и атмосфера были комфортны, спасибо ещё раз огромное за татуировку🎀»</p>
-            <div class="review-card__author">
-              <span class="review-card__name">Алина</span>
-              <span class="review-card__date">12 июля 2025</span>
+            <!-- CTA Button Header -->
+            <div class="hidden md:block">
+                <a href="#booking" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-white/15 bg-white/5 hover:bg-white text-brand-text hover:text-black text-xs font-semibold tracking-wider uppercase transition-all duration-300">
+                    <span>Записаться</span>
+                    <i class="fa-solid font-light fa-arrow-right text-[10px]"></i>
+                </a>
             </div>
 
-          <div class="review-card">
-            <p class="review-card__text">«Отличная работа, всё обсудили и сделали мою маленькую мечту)»</p>
-           <div class="review-card__author">
-              <span class="review-card__name">Анна Галузо</span>
-              <span class="review-card__date">13 июня 2025</span>
-            </div>
-          </div>
+            <!-- Mobile Burger Button -->
+            <button id="burger-btn" aria-label="Открыть меню" class="md:hidden p-2 text-brand-text hover:text-white focus:outline-none">
+                <i class="fa-solid fa-bars text-xl" id="burger-icon"></i>
+            </button>
+        </div>
 
-          <div class="review-card">
-            <p class="review-card__text">«Обновляла старую татуировку, осталась очень довольна. Милана профессионал своего дела. Хорошая, просторная, светлая студия. Цена приемлемая.»</p>
-            <div class="review-card__author">
-              <span class="review-card__name">Ирина</span>
-              <span class="review-card__date">16 апреля 2025</span>
+        <!-- Mobile Drawer Navigation -->
+        <div id="mobile-menu" class="hidden md:hidden fixed inset-0 top-20 bg-brand-bg/95 backdrop-blur-2xl border-t border-white/10 z-30 flex-col p-8 space-y-6">
+            <a href="#portfolio" class="mobile-link text-2xl font-serif text-brand-text hover:text-white tracking-wide border-b border-white/5 pb-4">01 / Работы</a>
+            <a href="#about" class="mobile-link text-2xl font-serif text-brand-text hover:text-white tracking-wide border-b border-white/5 pb-4">02 / О мастере</a>
+            <a href="#process" class="mobile-link text-2xl font-serif text-brand-text hover:text-white tracking-wide border-b border-white/5 pb-4">03 / Процесс</a>
+            <a href="#reviews" class="mobile-link text-2xl font-serif text-brand-text hover:text-white tracking-wide border-b border-white/5 pb-4">04 / Отзывы</a>
+            <a href="#booking" class="mobile-link text-2xl font-serif text-brand-text hover:text-white tracking-wide border-b border-white/5 pb-4">05 / Запись на сеанс</a>
+            
+            <div class="pt-6">
+                <a href="#booking" class="mobile-link w-full text-center block py-4 bg-brand-text text-brand-bg uppercase text-xs font-bold tracking-widest rounded-lg">
+                    Записаться на сеанс
+                </a>
             </div>
-          </div>
+        </div>
+    </header>
 
-          <div class="review-card">
-            <p class="review-card__text">«Прекрасный мастер и прекрасная работа! Атмосфера при сеансе отдельное удовольствие) Был доволен работой. Обязательно ещё раз загляну ради татуировки)»</p>
-            <div class="review-card__author">
-              <span class="review-card__name">Данил</span>
-              <span class="review-card__date">18 февраля 2025</span>
+    <!-- MAIN CONTENT CONTAINER -->
+    <main class="pt-20">
+
+        <!-- HERO SECTION -->
+        <section class="relative min-h-[calc(100vh-5rem)] flex items-center justify-center py-16 px-6 sm:px-8 max-w-7xl mx-auto overflow-hidden">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center w-full">
+                
+                <!-- Left Column: Typography & CTAs -->
+                <div class="lg:col-span-7 space-y-8 z-10 text-left reveal active">
+                    <!-- Experience Tag -->
+                    <div class="inline-flex items-center gap-3 px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs tracking-widest text-brand-muted uppercase font-mono">
+                        <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                        <span>6 лет опыта &bull; Томск</span>
+                    </div>
+
+                    <!-- Main Editorial Title (H1) -->
+                    <div class="space-y-2">
+                        <h1 class="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-serif font-light tracking-tight leading-[0.95] uppercase">
+                            <span class="block">MILANA</span>
+                            <span class="block text-brand-muted font-sans font-extralight tracking-widest text-3xl sm:text-4xl md:text-5xl mt-2">TATTOO ARTIST</span>
+                        </h1>
+                    </div>
+
+                    <!-- Intro Statement -->
+                    <p class="text-brand-muted text-base sm:text-lg max-w-xl font-light leading-relaxed">
+                        Художественная татуировка с тонким чувством формы, детальным вниманием к идее и максимальным комфортом в процессе.
+                    </p>
+
+                    <!-- CTAs -->
+                    <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-4">
+                        <a href="#booking" class="px-8 py-4 bg-brand-text text-brand-bg rounded-xl font-medium text-xs tracking-[0.2em] uppercase text-center hover:bg-white hover:shadow-lg hover:shadow-white/10 transition-all duration-300 flex items-center justify-center gap-3">
+                            <span>Записаться на сеанс</span>
+                            <i class="fa-solid fa-arrow-right text-xs"></i>
+                        </a>
+                        <a href="#portfolio" class="px-8 py-4 bg-transparent border border-white/15 text-brand-text rounded-xl font-medium text-xs tracking-[0.2em] uppercase text-center hover:border-white hover:bg-white/5 transition-all duration-300">
+                            Смотреть работы
+                        </a>
+                    </div>
+
+                    <!-- Quick Trust Markers -->
+                    <div class="pt-8 border-t border-white/10 grid grid-cols-3 gap-4 max-w-lg">
+                        <div>
+                            <div class="text-2xl font-serif text-white">5.0</div>
+                            <div class="text-[11px] text-brand-muted uppercase tracking-wider">Рейтинг</div>
+                        </div>
+                        <div>
+                            <div class="text-2xl font-serif text-white">23</div>
+                            <div class="text-[11px] text-brand-muted uppercase tracking-wider">Отзыва</div>
+                        </div>
+                        <div>
+                            <div class="text-2xl font-serif text-white">100%</div>
+                            <div class="text-[11px] text-brand-muted uppercase tracking-wider">Индивидуально</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column: Featured Hero Work Image (Image 1: Butterfly/Moth work) -->
+                <div class="lg:col-span-5 relative z-10 reveal active">
+                    <div class="relative mx-auto max-w-md lg:max-w-none">
+                        <!-- Background Glow Accent behind image -->
+                        <div class="absolute -inset-1 bg-gradient-to-r from-brand-accent/30 to-zinc-700/30 rounded-2xl blur-xl opacity-50"></div>
+                        
+                        <div class="relative rounded-2xl overflow-hidden border border-white/10 bg-brand-card shadow-2xl img-zoom-container group">
+                            <!-- Hero Image (1.jpg) -->
+                            <img src="1.jpg" alt="Татуировка мотылек с цветами, выполненная мастером Миланой" class="w-full h-[520px] sm:h-[600px] object-cover object-center" loading="eager" width="600" height="800">
+                            
+                            <!-- Floating Badge on Hero Photo -->
+                            <div class="absolute bottom-6 left-6 right-6 p-4 rounded-xl glass-panel flex items-center justify-between">
+                                <div>
+                                    <span class="text-[10px] uppercase tracking-widest text-brand-muted block">Избранная работа</span>
+                                    <span class="text-sm font-serif text-white">Ботаника &amp; Детализированная графика</span>
+                                </div>
+                                <button onclick="openLightbox(0)" aria-label="Открыть фото на весь экран" class="w-9 h-9 rounded-full bg-white/10 hover:bg-white text-white hover:text-black flex items-center justify-center transition-colors">
+                                    <i class="fa-solid fa-expand text-xs"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
-          </div>
+        </section>
 
-          <div class="review-card">
-            <p class="review-card__text">«Максимально приятная атмосфера и мастер очень милая девушка) А татуировка получилась аккуратной и невероятно красивой»</p>
-            <div class="review-card__author">
-              <span class="review-card__name">Беллер</span>
-              <span class="review-card__date">20 ноября 2024</span>
+        <!-- NUMBERS / STATS BAR SECTION -->
+        <section class="py-12 border-y border-white/10 bg-brand-card/50">
+            <div class="max-w-7xl mx-auto px-6 sm:px-8">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
+                    
+                    <div class="space-y-1 text-center md:text-left reveal">
+                        <div class="text-4xl sm:text-5xl font-serif text-white font-light">6<span class="text-brand-accent ml-1">+</span></div>
+                        <div class="text-xs uppercase tracking-widest text-brand-muted">Лет опыта в татуировке</div>
+                    </div>
+
+                    <div class="space-y-1 text-center md:text-left reveal">
+                        <div class="text-4xl sm:text-5xl font-serif text-white font-light flex items-center justify-center md:justify-start gap-2">
+                            <span>5.0</span>
+                            <span class="text-xs text-amber-400 star-glow"><i class="fa-solid fa-star"></i></span>
+                        </div>
+                        <div class="text-xs uppercase tracking-widest text-brand-muted">Средняя оценка клиентов</div>
+                    </div>
+
+                    <div class="space-y-1 text-center md:text-left reveal">
+                        <div class="text-4xl sm:text-5xl font-serif text-white font-light">23</div>
+                        <div class="text-xs uppercase tracking-widest text-brand-muted">Подтвержденных отзыва</div>
+                    </div>
+
+                    <div class="space-y-1 text-center md:text-left reveal">
+                        <div class="text-4xl sm:text-5xl font-serif text-white font-light">&infin;</div>
+                        <div class="text-xs uppercase tracking-widest text-brand-muted">Уникальных идей &amp; эскизов</div>
+                    </div>
+
+                </div>
             </div>
-          </div>
+        </section>
 
-          <div class="review-card">
-            <p class="review-card__text">«Милана опытный и аккуратный мастер! Сеанс прошёл без боли и под приятную музыку. Обязательно ещё приду, будем продолжать воплощать в жизнь красивые работы😉»</p>
-            <div class="review-card__author">
-              <span class="review-card__name">Максим</span>
-              <span class="review-card__date">11 ноября 2024</span>
+        <!-- PORTFOLIO SECTION -->
+        <section id="portfolio" class="py-24 px-6 sm:px-8 max-w-7xl mx-auto">
+            <!-- Section Header -->
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6 reveal">
+                <div>
+                    <span class="text-xs uppercase tracking-[0.25em] text-brand-muted block mb-3">Портфолио</span>
+                    <h2 class="text-3xl sm:text-4xl md:text-5xl font-serif font-light tracking-wide uppercase">РАБОТЫ</h2>
+                </div>
+                <p class="text-brand-muted text-sm sm:text-base max-w-md font-light">
+                    Татуировки, созданные Миланой. Каждая работа разработана с учетом анатомии тела и пожеланий клиента.
+                </p>
             </div>
-          </div>
 
-          <div class="review-card">
-            <p class="review-card__text">«Приятная девушка, сделала всё качественно и от души. Результатом доволен!) Уже успели запланировать новые проекты, так что это не последняя наша встреча! Советую 🙏»</p>
-            <div class="review-card__author">
-              <span class="review-card__name">Валера Карташов</span>
-              <span class="review-card__date">6 сентября 2024</span>
+            <!-- Asymmetric Editorial Gallery Grid (Using ALL 7 photos) -->
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+
+                <!-- Item 1: Moth & Floral (Vertical - Large Feature) -->
+                <div class="md:col-span-7 group relative rounded-2xl overflow-hidden bg-brand-card border border-white/10 img-zoom-container cursor-pointer reveal" onclick="openLightbox(0)">
+                    <img src="1.jpg" alt="Татуировка мотылек с цветами на бедре от мастера Миланы" class="w-full h-[450px] sm:h-[550px] object-cover" loading="lazy" width="800" height="1000">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity"></div>
+                    <div class="absolute bottom-6 left-6 right-6 flex items-end justify-between">
+                        <div>
+                            <span class="text-[10px] uppercase tracking-widest text-zinc-400 block mb-1">01 / Ботаника &amp; Графика</span>
+                            <h3 class="text-xl font-serif text-white">Мотылёк с пионами</h3>
+                        </div>
+                        <span class="w-10 h-10 rounded-full bg-white/10 group-hover:bg-white text-white group-hover:text-black flex items-center justify-center transition-all">
+                            <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Item 2: Anubis / Egyptian Mythology (Vertical - Column) -->
+                <div class="md:col-span-5 group relative rounded-2xl overflow-hidden bg-brand-card border border-white/10 img-zoom-container cursor-pointer reveal" onclick="openLightbox(1)">
+                    <img src="2.jpg" alt="Татуировка Анубис на предплечье от мастера Миланы" class="w-full h-[450px] sm:h-[550px] object-cover" loading="lazy" width="600" height="800">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity"></div>
+                    <div class="absolute bottom-6 left-6 right-6 flex items-end justify-between">
+                        <div>
+                            <span class="text-[10px] uppercase tracking-widest text-zinc-400 block mb-1">02 / Египетская мифология</span>
+                            <h3 class="text-xl font-serif text-white">Анубис в контрасте</h3>
+                        </div>
+                        <span class="w-10 h-10 rounded-full bg-white/10 group-hover:bg-white text-white group-hover:text-black flex items-center justify-center transition-all">
+                            <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Item 3: Anime Demon Mask (Vertical - Medium) -->
+                <div class="md:col-span-4 group relative rounded-2xl overflow-hidden bg-brand-card border border-white/10 img-zoom-container cursor-pointer reveal" onclick="openLightbox(2)">
+                    <img src="3.jpg" alt="Аниме татуировка маска демона на предплечье от Миланы" class="w-full h-[400px] object-cover" loading="lazy" width="500" height="700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity"></div>
+                    <div class="absolute bottom-6 left-6 right-6 flex items-end justify-between">
+                        <div>
+                            <span class="text-[10px] uppercase tracking-widest text-zinc-400 block mb-1">03 / Аниме &amp; Графика</span>
+                            <h3 class="text-lg font-serif text-white">Демоническая маска</h3>
+                        </div>
+                        <span class="w-9 h-9 rounded-full bg-white/10 group-hover:bg-white text-white group-hover:text-black flex items-center justify-center transition-all">
+                            <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Item 4: Cute Color Anime Cats (Vertical - Medium) -->
+                <div class="md:col-span-4 group relative rounded-2xl overflow-hidden bg-brand-card border border-white/10 img-zoom-container cursor-pointer reveal" onclick="openLightbox(3)">
+                    <img src="4.jpg" alt="Цветная милая аниме татуировка с котиками от Миланы" class="w-full h-[400px] object-cover" loading="lazy" width="500" height="700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity"></div>
+                    <div class="absolute bottom-6 left-6 right-6 flex items-end justify-between">
+                        <div>
+                            <span class="text-[10px] uppercase tracking-widest text-zinc-400 block mb-1">04 / Цветная татуировка</span>
+                            <h3 class="text-lg font-serif text-white">Аниме котики</h3>
+                        </div>
+                        <span class="w-9 h-9 rounded-full bg-white/10 group-hover:bg-white text-white group-hover:text-black flex items-center justify-center transition-all">
+                            <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Item 5: Elegant Fine Line Botanical Vine (Vertical - Medium) -->
+                <div class="md:col-span-4 group relative rounded-2xl overflow-hidden bg-brand-card border border-white/10 img-zoom-container cursor-pointer reveal" onclick="openLightbox(4)">
+                    <img src="5.jpg" alt="Тонкие веточки ботаника татуировка тонкие линии от Миланы" class="w-full h-[400px] object-cover" loading="lazy" width="500" height="700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity"></div>
+                    <div class="absolute bottom-6 left-6 right-6 flex items-end justify-between">
+                        <div>
+                            <span class="text-[10px] uppercase tracking-widest text-zinc-400 block mb-1">05 / Fine Line &amp; Ботаника</span>
+                            <h3 class="text-lg font-serif text-white">Изящные ветви</h3>
+                        </div>
+                        <span class="w-9 h-9 rounded-full bg-white/10 group-hover:bg-white text-white group-hover:text-black flex items-center justify-center transition-all">
+                            <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Item 6: Paw prints & bunny (Vertical - Column 6) -->
+                <div class="md:col-span-6 group relative rounded-2xl overflow-hidden bg-brand-card border border-white/10 img-zoom-container cursor-pointer reveal" onclick="openLightbox(5)">
+                    <img src="6.jpg" alt="Микро татуировка лапки и зайчик от Миланы" class="w-full h-[420px] object-cover" loading="lazy" width="600" height="800">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity"></div>
+                    <div class="absolute bottom-6 left-6 right-6 flex items-end justify-between">
+                        <div>
+                            <span class="text-[10px] uppercase tracking-widest text-zinc-400 block mb-1">06 / Микротату &amp; Миниатюры</span>
+                            <h3 class="text-xl font-serif text-white">Лапки и кролик</h3>
+                        </div>
+                        <span class="w-10 h-10 rounded-full bg-white/10 group-hover:bg-white text-white group-hover:text-black flex items-center justify-center transition-all">
+                            <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Item 7: Cursive Script Tattoo "Любовь" (Vertical - Column 6) -->
+                <div class="md:col-span-6 group relative rounded-2xl overflow-hidden bg-brand-card border border-white/10 img-zoom-container cursor-pointer reveal" onclick="openLightbox(6)">
+                    <img src="7.jpg" alt="Каллиграфическая надпись Любовь татуировка от Миланы" class="w-full h-[420px] object-cover" loading="lazy" width="600" height="800">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity"></div>
+                    <div class="absolute bottom-6 left-6 right-6 flex items-end justify-between">
+                        <div>
+                            <span class="text-[10px] uppercase tracking-widest text-zinc-400 block mb-1">07 / Скрипт &amp; Каллиграфия</span>
+                            <h3 class="text-xl font-serif text-white">Надпись «Любовь»</h3>
+                        </div>
+                        <span class="w-10 h-10 rounded-full bg-white/10 group-hover:bg-white text-white group-hover:text-black flex items-center justify-center transition-all">
+                            <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                        </span>
+                    </div>
+                </div>
+
             </div>
-          </div>
+        </section>
 
-          <div class="review-card">
-            <p class="review-card__text">«Мастер великолепный, скоро приду еще на пару сеансов. Самые комфортные 4 часа в моей жизни, Милана найдет тему для приятного разговора.»</p>
-            <div class="review-card__author">
-              <span class="review-card__name">Анна</span>
-              <span class="review-card__date">25 июля 2024</span>
+        <!-- LIGHTBOX MODAL CONTAINER -->
+        <div id="lightbox" class="fixed inset-0 z-50 hidden bg-black/95 backdrop-blur-xl flex flex-col justify-between p-4 sm:p-8 transition-all duration-300">
+            <!-- Lightbox Header -->
+            <div class="flex items-center justify-between text-white z-10 max-w-7xl mx-auto w-full">
+                <div>
+                    <span id="lb-counter" class="text-xs uppercase tracking-widest text-brand-muted">1 / 7</span>
+                    <h4 id="lb-title" class="text-base sm:text-lg font-serif">Мотылёк с пионами</h4>
+                </div>
+                <button onclick="closeLightbox()" class="w-12 h-12 rounded-full bg-white/10 hover:bg-white text-white hover:text-black flex items-center justify-center transition-colors">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
             </div>
-          </div>
 
-          <div class="review-card">
-            <p class="review-card__text">«Все получилось супер, рекомендую»</p>
-            <div class="review-card__author">
-              <span class="review-card__name">Александр</span>
-              <span class="review-card__date">2024</span>
+            <!-- Lightbox Main Stage Image -->
+            <div class="relative flex-1 flex items-center justify-center my-4 overflow-hidden">
+                <!-- Prev Button -->
+                <button onclick="prevLightboxImage()" class="absolute left-2 sm:left-6 z-20 w-12 h-12 rounded-full bg-white/10 hover:bg-white text-white hover:text-black flex items-center justify-center transition-colors">
+                    <i class="fa-solid fa-chevron-left text-sm"></i>
+                </button>
+
+                <!-- Current Image Box -->
+                <div class="max-w-full max-h-full flex items-center justify-center p-2">
+                    <img id="lb-img" src="" alt="Детальный просмотр татуировки Миланы" class="max-h-[75vh] max-w-[90vw] object-contain rounded-lg shadow-2xl transition-all duration-300">
+                </div>
+
+                <!-- Next Button -->
+                <button onclick="nextLightboxImage()" class="absolute right-2 sm:right-6 z-20 w-12 h-12 rounded-full bg-white/10 hover:bg-white text-white hover:text-black flex items-center justify-center transition-colors">
+                    <i class="fa-solid fa-chevron-right text-sm"></i>
+                </button>
             </div>
-          </div>
 
-          <div class="review-card">
-            <p class="review-card__text">«Всё супер)»</p>
-            <div class="review-card__author">
-              <span class="review-card__name">Алена</span>
-              <span class="review-card__date">2024</span>
+            <!-- Lightbox Footer Info -->
+            <div class="text-center z-10 max-w-xl mx-auto">
+                <p id="lb-desc" class="text-xs sm:text-sm text-brand-muted font-light mb-3"></p>
+                <a href="#booking" onclick="closeLightbox()" class="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-brand-text text-brand-bg text-xs uppercase font-semibold tracking-wider hover:bg-white transition-colors">
+                    <span>Хочу похожую татуировку</span>
+                    <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                </a>
             </div>
-          </div>
+        </div>
 
-          <div class="review-card">
-            <p class="review-card__text">«Работа выполнена качественно, красивая студия, приемлемая цена, вежливый исполнитель👍👍👍👍»</p>
-            <div class="review-card__author">
-              <span class="review-card__name">Ефремов Вячеслав</span>
-              <span class="review-card__date">2024</span>
+        <!-- ABOUT SECTION -->
+        <section id="about" class="py-24 bg-brand-card/30 border-y border-white/5 relative">
+            <div class="max-w-7xl mx-auto px-6 sm:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+                    
+                    <!-- Left: Portrait Accent & Quote Frame -->
+                    <div class="lg:col-span-5 relative reveal">
+                        <div class="relative rounded-2xl overflow-hidden border border-white/10 p-8 glass-panel space-y-6">
+                            <div class="text-brand-accent text-4xl font-serif">“</div>
+                            <blockquote class="text-xl sm:text-2xl font-serif italic text-white/90 font-light leading-relaxed">
+                                Для меня татуировка — это не просто рисунок на коже, а история, идея и настроение.
+                            </blockquote>
+                            <div class="pt-4 border-t border-white/10 flex items-center justify-between">
+                                <div>
+                                    <div class="text-sm font-semibold tracking-wide text-white uppercase">Милана</div>
+                                    <div class="text-xs text-brand-muted uppercase tracking-widest">Тату-мастер в Томске</div>
+                                </div>
+                                <div class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-xs font-serif italic">
+                                    M
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right: Exact Text Content -->
+                    <div class="lg:col-span-7 space-y-6 reveal">
+                        <span class="text-xs uppercase tracking-[0.25em] text-brand-muted block">О мастерe</span>
+                        <h2 class="text-3xl sm:text-4xl md:text-5xl font-serif font-light tracking-wide uppercase">
+                            МЕНЯ ЗОВУТ МИЛАНА
+                        </h2>
+                        
+                        <div class="space-y-5 text-brand-muted text-base sm:text-lg font-light leading-relaxed">
+                            <p>
+                                Меня зовут Милана. Я тату-мастер с опытом 6 лет.
+                            </p>
+                            <p>
+                                Для меня татуировка — это не просто рисунок на коже, а история, идея и настроение, которые человек выбирает оставить с собой.
+                            </p>
+                            <p>
+                                Я внимательно отношусь к задумке каждого клиента, помогаю доработать идею и стараюсь сделать каждый сеанс максимально комфортным.
+                            </p>
+                            <p>
+                                Мне важно, чтобы человек ушёл не только с красивой татуировкой, но и с приятными впечатлениями от самого процесса.
+                            </p>
+                        </div>
+
+                        <!-- Highlights Pills -->
+                        <div class="pt-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div class="p-4 rounded-xl border border-white/5 bg-white/[0.02] flex items-center gap-3">
+                                <i class="fa-solid fa-heart text-brand-accent"></i>
+                                <span class="text-xs uppercase tracking-wider text-white">Внимание к каждой детали</span>
+                            </div>
+                            <div class="p-4 rounded-xl border border-white/5 bg-white/[0.02] flex items-center gap-3">
+                                <i class="fa-solid fa-shield-halved text-brand-accent"></i>
+                                <span class="text-xs uppercase tracking-wider text-white">Уютная и спокойная атмосфера</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
             </div>
-          </div>
+        </section>
 
-          <div class="review-card">
-            <p class="review-card__text">«Работа выполнена профессионально. Мастер Милана отзывчивая, дружелюбная. Все выполнено качественно, быстро и аккуратно. Советую!»</p>
-           <div class="review-card__author">
-              <span class="review-card__name">VYACHESLAV</span>
-              <span class="review-card__date">2024</span>
+        <!-- PROCESS SECTION -->
+        <section id="process" class="py-24 px-6 sm:px-8 max-w-7xl mx-auto">
+            <div class="text-center max-w-2xl mx-auto mb-16 reveal">
+                <span class="text-xs uppercase tracking-[0.25em] text-brand-muted block mb-3">Комфорт на каждом этапе</span>
+                <h2 class="text-3xl sm:text-4xl md:text-5xl font-serif font-light tracking-wide uppercase">КАК ПРОХОДИТ СЕАНС</h2>
             </div>
-          </div>
 
-          <div class="review-card">
-            <p class="review-card__text">«Очень понравился мастер, приятная девушка... Очень понравился конечный итог аккуратно и красиво... мастер дал много советов, а так же сделал именно то что я хочу поняв меня с полуслова!!! Волшебница»</p>
-            <div class="review-card__author">
-              <span class="review-card__name">Рона</span>
-              <span class="review-card__date">2024</span>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                
+                <!-- Step 01 -->
+                <div class="p-8 rounded-2xl bg-brand-card border border-white/10 flex flex-col justify-between h-full hover:border-white/20 transition-colors reveal">
+                    <div class="space-y-4">
+                        <span class="text-4xl font-serif font-light text-brand-muted/40 block">01</span>
+                        <h3 class="text-lg font-serif text-white uppercase tracking-wider">ОБСУЖДАЕМ ИДЕЮ</h3>
+                        <p class="text-sm text-brand-muted font-light leading-relaxed">
+                            Обсуждаем задумку, размер, расположение и детали будущей татуировки.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Step 02 -->
+                <div class="p-8 rounded-2xl bg-brand-card border border-white/10 flex flex-col justify-between h-full hover:border-white/20 transition-colors reveal">
+                    <div class="space-y-4">
+                        <span class="text-4xl font-serif font-light text-brand-muted/40 block">02</span>
+                        <h3 class="text-lg font-serif text-white uppercase tracking-wider">ПОДБИРАЕМ ЭСКИЗ</h3>
+                        <p class="text-sm text-brand-muted font-light leading-relaxed">
+                            Дорабатываем идею и приходим к варианту, который подходит именно вам.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Step 03 -->
+                <div class="p-8 rounded-2xl bg-brand-card border border-white/10 flex flex-col justify-between h-full hover:border-white/20 transition-colors reveal">
+                    <div class="space-y-4">
+                        <span class="text-4xl font-serif font-light text-brand-muted/40 block">03</span>
+                        <h3 class="text-lg font-serif text-white uppercase tracking-wider">СОЗДАЁМ</h3>
+                        <p class="text-sm text-brand-muted font-light leading-relaxed">
+                            Спокойная атмосфера, аккуратная работа и внимание к деталям.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Step 04 -->
+                <div class="p-8 rounded-2xl bg-brand-card border border-white/10 flex flex-col justify-between h-full hover:border-white/20 transition-colors reveal">
+                    <div class="space-y-4">
+                        <span class="text-4xl font-serif font-light text-brand-muted/40 block">04</span>
+                        <h3 class="text-lg font-serif text-white uppercase tracking-wider">ГОТОВО</h3>
+                        <p class="text-sm text-brand-muted font-light leading-relaxed">
+                            Вы получаете татуировку, которую действительно хотели.
+                        </p>
+                    </div>
+                </div>
+
             </div>
-          </div>
+        </section>
 
-          <div class="review-card">
-            <p class="review-card__text">«Мастеру огромное спасибо. Делала одну новую и обновляла 2 старые татуировки, все быстро качественно. Рекомендую!!!!»</p>
-            <div class="review-card__author">
-              <span class="review-card__name">Светлана</span>
-              <span class="review-card__date">2024</span>
-           </div>
-          </div>
+        <!-- REVIEWS SECTION -->
+        <section id="reviews" class="py-24 bg-brand-card/30 border-y border-white/5 relative">
+            <div class="max-w-7xl mx-auto px-6 sm:px-8">
+                
+                <!-- Rating Banner Header -->
+                <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-8 reveal">
+                    <div>
+                        <span class="text-xs uppercase tracking-[0.25em] text-brand-muted block mb-3">Доверие клиентов</span>
+                        <h2 class="text-3xl sm:text-4xl md:text-5xl font-serif font-light tracking-wide uppercase">ОТЗЫВЫ КЛИЕНТОВ</h2>
+                    </div>
+
+                    <!-- Rating Card -->
+                    <div class="flex items-center gap-6 p-6 rounded-2xl glass-panel border border-white/10">
+                        <div class="text-4xl font-serif font-light text-white">5.0</div>
+                        <div>
+                            <div class="flex text-amber-400 text-sm gap-1 mb-1">
+                                <i class="fa-solid fa-star star-glow"></i>
+                                <i class="fa-solid fa-star star-glow"></i>
+                                <i class="fa-solid fa-star star-glow"></i>
+                                <i class="fa-solid fa-star star-glow"></i>
+                                <i class="fa-solid fa-star star-glow"></i>
+                            </div>
+                            <div class="text-xs uppercase tracking-widest text-brand-muted">23 отзыва &bull; Средняя оценка</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Reviews Carousel Container -->
+                <div class="relative">
+                    <div id="reviews-slider" class="flex gap-6 overflow-x-auto snap-x snap-mandatory scrollbar-none pb-6">
+                        
+                        <!-- Review 1 -->
+                        <div class="snap-start shrink-0 w-[300px] sm:w-[380px] p-8 rounded-2xl bg-brand-card border border-white/10 flex flex-col justify-between space-y-6">
+                            <p class="text-brand-text text-sm sm:text-base font-light italic leading-relaxed">
+                                «Работа невероятна, общение и атмосфера были комфортны, спасибо ещё раз огромное за татуировку🎀»
+                            </p>
+                            <div class="pt-4 border-t border-white/5 flex justify-between items-center">
+                                <div>
+                                    <div class="text-sm font-medium text-white">Алина</div>
+                                    <div class="text-xs text-brand-muted">12 июля 2025</div>
+                                </div>
+                                <div class="text-amber-400 text-xs"><i class="fa-solid fa-star"></i> 5.0</div>
+                            </div>
+                        </div>
+
+                        <!-- Review 2 -->
+                        <div class="snap-start shrink-0 w-[300px] sm:w-[380px] p-8 rounded-2xl bg-brand-card border border-white/10 flex flex-col justify-between space-y-6">
+                            <p class="text-brand-text text-sm sm:text-base font-light italic leading-relaxed">
+                                «Отличная работа, всё обсудили и сделали мою маленькую мечту)»
+                            </p>
+                            <div class="pt-4 border-t border-white/5 flex justify-between items-center">
+                                <div>
+                                    <div class="text-sm font-medium text-white">Анна Галузо</div>
+                                    <div class="text-xs text-brand-muted">13 июня 2025</div>
+                                </div>
+                                <div class="text-amber-400 text-xs"><i class="fa-solid fa-star"></i> 5.0</div>
+                            </div>
+                        </div>
+
+                        <!-- Review 3 -->
+                        <div class="snap-start shrink-0 w-[300px] sm:w-[380px] p-8 rounded-2xl bg-brand-card border border-white/10 flex flex-col justify-between space-y-6">
+                            <p class="text-brand-text text-sm sm:text-base font-light italic leading-relaxed">
+                                «Обновляла старую татуировку, осталась очень довольна. Милана профессионал своего дела. Хорошая, просторная, светлая студия. Цена приемлемая.»
+                            </p>
+                            <div class="pt-4 border-t border-white/5 flex justify-between items-center">
+                                <div>
+                                    <div class="text-sm font-medium text-white">Ирина</div>
+                                    <div class="text-xs text-brand-muted">16 апреля 2025</div>
+                                </div>
+                                <div class="text-amber-400 text-xs"><i class="fa-solid fa-star"></i> 5.0</div>
+                            </div>
+                        </div>
+
+                        <!-- Review 4 -->
+                        <div class="snap-start shrink-0 w-[300px] sm:w-[380px] p-8 rounded-2xl bg-brand-card border border-white/10 flex flex-col justify-between space-y-6">
+                            <p class="text-brand-text text-sm sm:text-base font-light italic leading-relaxed">
+                                «Прекрасный мастер и прекрасная работа! Атмосфера при сеансе отдельное удовольствие) Был доволен работой. Обязательно еще раз загляну ради татуировки)»
+                            </p>
+                            <div class="pt-4 border-t border-white/5 flex justify-between items-center">
+                                <div>
+                                    <div class="text-sm font-medium text-white">Данил</div>
+                                    <div class="text-xs text-brand-muted">18 февраля 2025</div>
+                                </div>
+                                <div class="text-amber-400 text-xs"><i class="fa-solid fa-star"></i> 5.0</div>
+                            </div>
+                        </div>
+
+                        <!-- Review 5 -->
+                        <div class="snap-start shrink-0 w-[300px] sm:w-[380px] p-8 rounded-2xl bg-brand-card border border-white/10 flex flex-col justify-between space-y-6">
+                            <p class="text-brand-text text-sm sm:text-base font-light italic leading-relaxed">
+                                «Максимально приятная атмосфера и мастер очень милая девушка) А татуировка получилась аккуратной и невероятно красивой»
+                            </p>
+                            <div class="pt-4 border-t border-white/5 flex justify-between items-center">
+                                <div>
+                                    <div class="text-sm font-medium text-white">Беллер</div>
+                                    <div class="text-xs text-brand-muted">20 ноября 2024</div>
+                                </div>
+                                <div class="text-amber-400 text-xs"><i class="fa-solid fa-star"></i> 5.0</div>
+                            </div>
+                        </div>
+
+                        <!-- Review 6 -->
+                        <div class="snap-start shrink-0 w-[300px] sm:w-[380px] p-8 rounded-2xl bg-brand-card border border-white/10 flex flex-col justify-between space-y-6">
+                            <p class="text-brand-text text-sm sm:text-base font-light italic leading-relaxed">
+                                «Милана опытный и аккуратный мастер! Сеанс прошёл без боли и под приятную музыку. Обязательно ещё приду, будем продолжать воплощать в жизнь красивые работы😉»
+                            </p>
+                            <div class="pt-4 border-t border-white/5 flex justify-between items-center">
+                                <div>
+                                    <div class="text-sm font-medium text-white">Максим</div>
+                                    <div class="text-xs text-brand-muted">11 ноября 2024</div>
+                                </div>
+                                <div class="text-amber-400 text-xs"><i class="fa-solid fa-star"></i> 5.0</div>
+                            </div>
+                        </div>
+
+                        <!-- Review 7 -->
+                        <div class="snap-start shrink-0 w-[300px] sm:w-[380px] p-8 rounded-2xl bg-brand-card border border-white/10 flex flex-col justify-between space-y-6">
+                            <p class="text-brand-text text-sm sm:text-base font-light italic leading-relaxed">
+                                «Приятная девушка, сделала всё качественно и от души. Результатом доволен!) Уже успели запланировать новые проекты, так что это не последняя наша встреча! Советую 🙏»
+                            </p>
+                            <div class="pt-4 border-t border-white/5 flex justify-between items-center">
+                                <div>
+                                    <div class="text-sm font-medium text-white">Валера Карташов</div>
+                                    <div class="text-xs text-brand-muted">6 сентября 2024</div>
+                                </div>
+                                <div class="text-amber-400 text-xs"><i class="fa-solid fa-star"></i> 5.0</div>
+                            </div>
+                        </div>
+
+                        <!-- Review 8 -->
+                        <div class="snap-start shrink-0 w-[300px] sm:w-[380px] p-8 rounded-2xl bg-brand-card border border-white/10 flex flex-col justify-between space-y-6">
+                            <p class="text-brand-text text-sm sm:text-base font-light italic leading-relaxed">
+                                «Мастер великолепный, скоро приду еще на пару сеансов. Самые комфортные 4 часа в моей жизни, Милана найдет тему для приятного разговора. Прошло все как положено, от подготовки до самого конца сеанса. Если за красивой таткой в Томске, то это к Милане))»
+                            </p>
+                            <div class="pt-4 border-t border-white/5 flex justify-between items-center">
+                                <div>
+                                    <div class="text-sm font-medium text-white">Анна</div>
+                                    <div class="text-xs text-brand-muted">25 июля 2024</div>
+                                </div>
+                                <div class="text-amber-400 text-xs"><i class="fa-solid fa-star"></i> 5.0</div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Scroll controls -->
+                    <div class="flex items-center justify-end gap-3 mt-6">
+                        <button onclick="scrollReviews('left')" aria-label="Предыдущие отзывы" class="w-10 h-10 rounded-full border border-white/10 bg-white/5 hover:bg-white text-white hover:text-black flex items-center justify-center transition-colors">
+                            <i class="fa-solid fa-chevron-left text-xs"></i>
+                        </button>
+                        <button onclick="scrollReviews('right')" aria-label="Следующие отзывы" class="w-10 h-10 rounded-full border border-white/10 bg-white/5 hover:bg-white text-white hover:text-black flex items-center justify-center transition-colors">
+                            <i class="fa-solid fa-chevron-right text-xs"></i>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- WHY MILANA SECTION -->
+        <section class="py-24 px-6 sm:px-8 max-w-7xl mx-auto">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6 reveal">
+                <div>
+                    <span class="text-xs uppercase tracking-[0.25em] text-brand-muted block mb-3">Преимущества</span>
+                    <h2 class="text-3xl sm:text-4xl md:text-5xl font-serif font-light tracking-wide uppercase">
+                        ПОЧЕМУ КЛИЕНТЫ ВОЗВРАЩАЮТСЯ
+                    </h2>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                
+                <div class="p-8 rounded-2xl bg-brand-card/40 border border-white/5 space-y-4 reveal">
+                    <span class="text-sm font-mono text-brand-accent">01</span>
+                    <h3 class="text-lg font-serif text-white uppercase tracking-wider">ВНИМАНИЕ К ИДЕЕ</h3>
+                    <p class="text-sm text-brand-muted font-light leading-relaxed">
+                        Каждая работа начинается с детального обсуждения того, что хочет клиент, и адаптации эскиза под анатомию.
+                    </p>
+                </div>
+
+                <div class="p-8 rounded-2xl bg-brand-card/40 border border-white/5 space-y-4 reveal">
+                    <span class="text-sm font-mono text-brand-accent">02</span>
+                    <h3 class="text-lg font-serif text-white uppercase tracking-wider">АККУРАТНОСТЬ</h3>
+                    <p class="text-sm text-brand-muted font-light leading-relaxed">
+                        Клиенты неоднократно отмечают качество, ювелирные линии и аккуратность исполнения работ.
+                    </p>
+                </div>
+
+                <div class="p-8 rounded-2xl bg-brand-card/40 border border-white/5 space-y-4 reveal">
+                    <span class="text-sm font-mono text-brand-accent">03</span>
+                    <h3 class="text-lg font-serif text-white uppercase tracking-wider">АТМОСФЕРА</h3>
+                    <p class="text-sm text-brand-muted font-light leading-relaxed">
+                        В отзывах часто упоминается легкое, комфортное и приятное общение на протяжении всего сеанса.
+                    </p>
+                </div>
+
+                <div class="p-8 rounded-2xl bg-brand-card/40 border border-white/5 space-y-4 reveal">
+                    <span class="text-sm font-mono text-brand-accent">04</span>
+                    <h3 class="text-lg font-serif text-white uppercase tracking-wider">ОПЫТ 6 ЛЕТ</h3>
+                    <p class="text-sm text-brand-muted font-light leading-relaxed">
+                        Профессиональный подход к перекрытию, обновлению старых татуировок и созданию новых проектов.
+                    </p>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- CTA & BOOKING / CONTACTS SECTION -->
+        <section id="booking" class="py-24 px-6 sm:px-8 max-w-7xl mx-auto">
+            <div class="relative rounded-3xl overflow-hidden border border-white/10 glass-panel p-8 sm:p-12 lg:p-16">
+                <!-- Background ambient visual -->
+                <div class="absolute inset-0 bg-gradient-to-br from-brand-accent/20 via-transparent to-black/80 pointer-events-none"></div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 relative z-10 items-center">
+                    
+                    <!-- Text Info Column -->
+                    <div class="lg:col-span-6 space-y-8">
+                        <div>
+                            <span class="text-xs uppercase tracking-[0.25em] text-brand-muted block mb-3">Запись в Томске</span>
+                            <h2 class="text-4xl sm:text-5xl lg:text-6xl font-serif font-light tracking-wide uppercase leading-tight">
+                                ГОТОВЫ ПРЕВРАТИТЬ ИДЕЮ В ТАТУИРОВКУ?
+                            </h2>
+                        </div>
+
+                        <p class="text-brand-muted text-base sm:text-lg font-light leading-relaxed">
+                            Расскажите о своей идее, желаемом размере и месте нанесения. Я свяжусь с вами, чтобы обсудить детали и подобрать удобную дату.
+                        </p>
+
+                        <!-- Contact Channels Links (No fake phone numbers added) -->
+                        <div class="space-y-4 pt-4 border-t border-white/10">
+                            <div class="text-xs uppercase tracking-widest text-zinc-400">Прямая связь &amp; Соцсети:</div>
+                            
+                            <div class="flex flex-wrap items-center gap-4">
+                                <a href="https://t.me/" target="_blank" rel="noopener noreferrer" class="px-5 py-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 flex items-center gap-3 text-sm text-white transition-colors">
+                                    <i class="fa-brands fa-telegram text-sky-400 text-base"></i>
+                                    <span>Telegram <span class="text-[10px] text-brand-muted">(Добавьте ссылку)</span></span>
+                                </a>
+                                <a href="https://instagram.com/" target="_blank" rel="noopener noreferrer" class="px-5 py-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 flex items-center gap-3 text-sm text-white transition-colors">
+                                    <i class="fa-brands fa-instagram text-pink-400 text-base"></i>
+                                    <span>Instagram <span class="text-[10px] text-brand-muted">(Добавьте ссылку)</span></span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Interactive Form Column -->
+                    <div class="lg:col-span-6">
+                        <form id="booking-form" onsubmit="handleFormSubmit(event)" class="bg-brand-card/90 border border-white/10 p-8 rounded-2xl space-y-5">
+                            <h3 class="text-xl font-serif text-white uppercase tracking-wider mb-2">Оставить заявку</h3>
+                            
+                            <div>
+                                <label for="user-name" class="block text-xs uppercase tracking-widest text-brand-muted mb-2">Ваше имя *</label>
+                                <input type="text" id="user-name" required placeholder="Как к вам обращаться?" class="w-full px-4 py-3.5 rounded-xl bg-white/5 border border-white/10 text-white placeholder-zinc-600 focus:outline-none focus:border-white transition-colors text-sm">
+                            </div>
+
+                            <div>
+                                <label for="user-contact" class="block text-xs uppercase tracking-widest text-brand-muted mb-2">Телефон или Telegram *</label>
+                                <input type="text" id="user-contact" required placeholder="@username или +7..." class="w-full px-4 py-3.5 rounded-xl bg-white/5 border border-white/10 text-white placeholder-zinc-600 focus:outline-none focus:border-white transition-colors text-sm">
+                            </div>
+
+                            <div>
+                                <label for="user-idea" class="block text-xs uppercase tracking-widest text-brand-muted mb-2">Описание идеи / размер</label>
+                                <textarea id="user-idea" rows="3" placeholder="Что бы вы хотели нанести? Примерный размер и место..." class="w-full px-4 py-3.5 rounded-xl bg-white/5 border border-white/10 text-white placeholder-zinc-600 focus:outline-none focus:border-white transition-colors text-sm resize-none"></textarea>
+                            </div>
+
+                            <button type="submit" class="w-full py-4 bg-brand-text text-brand-bg rounded-xl font-bold text-xs tracking-[0.2em] uppercase hover:bg-white transition-all duration-300 shadow-lg">
+                                Отправить заявку
+                            </button>
+
+                            <p class="text-[10px] text-zinc-500 text-center leading-tight">
+                                Нажимая кнопку, вы соглашаетесь на обработку персональных данных для связи с мастером.
+                            </p>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="border-t border-white/10 py-12 px-6 sm:px-8 bg-brand-bg">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8 text-center md:text-left">
+            
+            <div class="space-y-2">
+                <a href="#" class="font-serif text-2xl tracking-[0.2em] font-light uppercase text-brand-text block">MILANA</a>
+                <p class="text-xs text-brand-muted uppercase tracking-widest">Тату-мастер в Томске &bull; 6 лет опыта</p>
+            </div>
+
+            <!-- Quick Nav -->
+            <div class="flex flex-wrap justify-center gap-8 text-xs uppercase tracking-widest text-brand-muted">
+                <a href="#portfolio" class="hover:text-white transition-colors">Работы</a>
+                <a href="#about" class="hover:text-white transition-colors">О мастере</a>
+                <a href="#process" class="hover:text-white transition-colors">Процесс</a>
+                <a href="#reviews" class="hover:text-white transition-colors">Отзывы</a>
+                <a href="#booking" class="hover:text-white transition-colors">Запись</a>
+            </div>
+
+            <div class="text-xs text-zinc-600 font-mono">
+                &copy; 2026 Milana Tattoo. Все права защищены.
+            </div>
 
         </div>
-      <div class="reviews__controls">
-        <button class="reviews__btn reviews__btn--prev" aria-label="Предыдущий отзыв">
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M13 4L7 10L13 16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </button>
-        <button class="reviews__btn reviews__btn--next" aria-label="Следующий отзыв">
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M7 4L13 10L7 16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </button>
-      </div>
-    </div>
-  </section>
+    </footer>
 
-  <section class="why">
-    <div class="why__inner">
-      <h2 class="section-title">ПОЧЕМУ КЛИЕНТЫ ВОЗВРАЩАЮТСЯ</h2>
-      <div class="why__grid">
-        <div class="why__item">
-          <span class="why__item-num">01</span>
-          <h3 class="why__item-title">Внимание к идее</h3>
-          <p>Каждая работа начинается с обсуждения того, что хочет клиент.</p>
+    <!-- SUCCESS NOTIFICATION MODAL -->
+    <div id="success-modal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-md flex items-center justify-center p-6">
+        <div class="bg-brand-card border border-white/10 p-8 rounded-2xl max-w-md w-full text-center space-y-6">
+            <div class="w-16 h-16 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 mx-auto flex items-center justify-center text-2xl">
+                <i class="fa-solid fa-check"></i>
+            </div>
+            <div class="space-y-2">
+                <h3 class="text-2xl font-serif text-white">СПАСИБО ЗА ЗАЯВКУ!</h3>
+                <p class="text-sm text-brand-muted font-light">
+                    Милана свяжется с вами в ближайшее время для обсуждения вашей идеи.
+                </p>
+            </div>
+            <button onclick="closeSuccessModal()" class="w-full py-3 bg-brand-text text-brand-bg font-semibold text-xs tracking-widest uppercase rounded-xl hover:bg-white transition-colors">
+                Понятно
+            </button>
         </div>
-        <div class="why__item">
-          <span class="why__item-num">02</span>
-          <h3 class="why__item-title">Аккуратность</h3>
-          <p>Клиенты неоднократно отмечают качество и аккуратность работы.</p>
-        </div>
-        <div class="why__item">
-          <span class="why__item-num">03</span>
-          <h3 class="why__item-title">Атмосфера</h3>
-          <p>В отзывах часто упоминается комфортное и приятное общение.</p>
-        </div>
-        <div class="why__item">
-          <span class="why__item-num">04</span>
-          <h3 class="why__item-title">Профессиональный подход</h3>
-          <p>6 лет опыта и индивидуальный подход к каждой работе.</p>
-        </div>
-      </div>
     </div>
-  </section>
 
-  <section class="cta">
-    <div class="cta__inner">
-      <h2 class="cta__title">ГОТОВЫ ПРЕВРАТИТЬ<br>ИДЕЮ В ТАТУИРОВКУ?</h2>
-      <p class="cta__text">Обсудим вашу идею.</p>
-      <div class="cta__actions">
-        <a href="#contact" class="btn btn--primary">Записаться</a>
-        <a href="#works" class="btn btn--outline">Посмотреть работы</a>
-      </div>
-    </div>
-  </section>
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // Gallery Data Matrix for Lightbox
+        const galleryItems = [
+            {
+                src: '1.jpg',
+                title: 'Мотылёк с пионами',
+                desc: 'Детализированная художественная работа с растительными элементами и мягкой растушевкой.'
+            },
+            {
+                src: '2.jpg',
+                title: 'Анубис в контрасте',
+                desc: 'Графическая татуировка с насыщенным черным тоном и египетской символикой.'
+            },
+            {
+                src: '3.jpg',
+                title: 'Демоническая маска',
+                desc: 'Иллюстративный аниме-стиль с высокой детализацией штриха.'
+            },
+            {
+                src: '4.jpg',
+                title: 'Аниме котики',
+                desc: 'Милая цветная татуировка с мягкими акварельными оттенками.'
+            },
+            {
+                src: '5.jpg',
+                title: 'Изящные ветви',
+                desc: 'Fine line ботаника, подчеркивающая изгибы и анатомию.'
+            },
+            {
+                src: '6.jpg',
+                title: 'Лапки и кролик',
+                desc: 'Микротатуировка с аккуратными тонкими контурами.'
+            },
+            {
+                src: '7.jpg',
+                title: 'Надпись «Любовь»',
+                desc: 'Каллиграфический скрипт с изящными авторскими росчерками.'
+            }
+        ];
 
-  <section class="contact" id="contact">
-    <div class="contact__inner">
-      <h2 class="section-title">КОНТАКТЫ</h2>
-      <p class="contact__city">ТОМСК</p>
-      <div class="contact__links">
-        <a href="#" class="contact__link" data-placeholder="telegram">
-          <span class="contact__link-label">Telegram</span>
-          <span class="contact__link-hint">Добавьте ссылку</span>
-        </a>
-        <a href="#" class="contact__link" data-placeholder="instagram">
-          <span class="contact__link-label">Instagram</span>
-          <span class="contact__link-hint">Добавьте ссылку</span>
-        </a>
-        <a href="#" class="contact__link" data-placeholder="phone">
-          <span class="contact__link-label">Телефон</span>
-          <span class="contact__link-hint">Добавьте номер</span>
-        </a>
-      </div>
-    </div>
-  </section>
+        let currentLightboxIdx = 0;
 
-  <footer class="footer">
-    <div class="footer__inner">
-      <div class="footer__brand">
-        <span class="footer__name">MILANA</span>
-        <span class="footer__tagline">TATTOO ARTIST</span>
-      </div>
-      <nav class="footer__nav">
-        <a href="#works">Работы</a>
-        <a href="#about">О мастере</a>
-        <a href="#reviews">Отзывы</a>
-        <a href="#contact">Запись</a>
-      </nav>
-      <p class="footer__copy">© 2026 Milana Tattoo. Томск</p>
-    </div>
-  </footer>
+        // Mobile Menu Drawer Toggle
+        const burgerBtn = document.getElementById('burger-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
 
-  <div class="lightbox" id="lightbox">
-    <button class="lightbox__close" aria-label="Закрыть">
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-    </button>
-    <button class="lightbox__prev" aria-label="Предыдущее">
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-    </button>
-    <div class="lightbox__content">
-      <img src="" alt="" class="lightbox__img">
-    </div>
-    <button class="lightbox__next" aria-label="Следующее">
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-    </button>
-  </div>
-
-  <script>
-    (function() {
-      'use strict';
-      var header = document.querySelector('.header');
-      window.addEventListener('scroll', function() {
-        if (window.scrollY > 50) header.classList.add('scrolled');
-        else header.classList.remove('scrolled');
-      }, { passive: true });
-
-      var burger = document.querySelector('.header__burger');
-      var navOverlay = document.querySelector('.nav-overlay');
-      var navLinks = document.querySelectorAll('.nav-overlay__link');
-      burger.addEventListener('click', function() {
-        burger.classList.toggle('active');
-        navOverlay.classList.toggle('is-open');
-       document.body.style.overflow = navOverlay.classList.contains('is-open') ? 'hidden' : '';
-      });
-     navLinks.forEach(function(link) {
-        link.addEventListener('click', function() {
-          burger.classList.remove('active');
-          navOverlay.classList.remove('is-open');
-          document.body.style.overflow = '';
+        burgerBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            mobileMenu.classList.toggle('flex');
         });
-      });
 
-      document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
-        anchor.addEventListener('click', function(e) {
-          var targetId = this.getAttribute('href');
-          if (targetId === '#') return;
-          var target = document.querySelector(targetId);
-          if (target) {
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                mobileMenu.classList.remove('flex');
+            });
+        });
+
+        // Lightbox Functions
+        function openLightbox(index) {
+            currentLightboxIdx = index;
+            updateLightbox();
+            const lb = document.getElementById('lightbox');
+            lb.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            const lb = document.getElementById('lightbox');
+            lb.classList.add('hidden');
+            document.body.style.overflow = '';
+        }
+
+        function updateLightbox() {
+            const item = galleryItems[currentLightboxIdx];
+            document.getElementById('lb-img').src = item.src;
+            document.getElementById('lb-title').innerText = item.title;
+            document.getElementById('lb-desc').innerText = item.desc;
+            document.getElementById('lb-counter').innerText = `${currentLightboxIdx + 1} / ${galleryItems.length}`;
+        }
+
+        function nextLightboxImage() {
+            currentLightboxIdx = (currentLightboxIdx + 1) % galleryItems.length;
+            updateLightbox();
+        }
+
+        function prevLightboxImage() {
+            currentLightboxIdx = (currentLightboxIdx - 1 + galleryItems.length) % galleryItems.length;
+            updateLightbox();
+        }
+
+        // Keyboard Navigation for Lightbox
+        window.addEventListener('keydown', (e) => {
+            const lb = document.getElementById('lightbox');
+            if (!lb.classList.contains('hidden')) {
+                if (e.key === 'Escape') closeLightbox();
+                if (e.key === 'ArrowRight') nextLightboxImage();
+                if (e.key === 'ArrowLeft') prevLightboxImage();
+            }
+        });
+
+        // Reviews Scroll Logic
+        function scrollReviews(direction) {
+            const slider = document.getElementById('reviews-slider');
+            const scrollAmount = 340;
+            if (direction === 'left') {
+                slider.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+            } else {
+                slider.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+            }
+        }
+
+        // Scroll Reveal Animations via IntersectionObserver
+        document.addEventListener('DOMContentLoaded', () => {
+            const reveals = document.querySelectorAll('.reveal');
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+
+            reveals.forEach((el) => observer.observe(el));
+        });
+
+        // Form Submit Handler
+        function handleFormSubmit(e) {
             e.preventDefault();
-            var top = target.getBoundingClientRect().top + window.pageYOffset - 72;
-            window.scrollTo({ top: top, behavior: 'smooth' });
-          }
-        });
-      });
-
-      var lightbox = document.getElementById('lightbox');
-      var lightboxImg = lightbox.querySelector('.lightbox__img');
-      var lightboxClose = lightbox.querySelector('.lightbox__close');
-      var lightboxPrev = lightbox.querySelector('.lightbox__prev');
-      var lightboxNext = lightbox.querySelector('.lightbox__next');
-      var portfolioItems = document.querySelectorAll('.portfolio__item img');
-      var currentIndex = 0;
-      var images = [];
-      portfolioItems.forEach(function(img, index) {
-        images.push({ src: img.src, alt: img.alt });
-        img.parentElement.addEventListener('click', function() {
-          currentIndex = index;
-          lightboxImg.src = images[currentIndex].src;
-          lightboxImg.alt = images[currentIndex].alt;
-          lightbox.classList.add('is-open');
-          document.body.style.overflow = 'hidden';
-        });
-      });
-      lightboxClose.addEventListener('click', function() {
-        lightbox.classList.remove('is-open');
-        document.body.style.overflow = '';
-      });
-      lightboxNext.addEventListener('click', function() {
-        currentIndex = (currentIndex + 1) % images.length;
-        lightboxImg.style.opacity = '0'; lightboxImg.style.transform = 'scale(0.97)';
-        setTimeout(function() {
-          lightboxImg.src = images[currentIndex].src;
-          lightboxImg.alt = images[currentIndex].alt;
-          lightboxImg.style.opacity = '1'; lightboxImg.style.transform = 'scale(1)';
-        }, 150);
-      });
-      lightboxPrev.addEventListener('click', function() {
-       currentIndex = (currentIndex - 1 + images.length) % images.length;
-        lightboxImg.style.opacity = '0'; lightboxImg.style.transform = 'scale(0.97)';
-        setTimeout(function() {
-          lightboxImg.src = images[currentIndex].src;
-          lightboxImg.alt = images[currentIndex].alt;
-          lightboxImg.style.opacity = '1'; lightboxImg.style.transform = 'scale(1)';
-        }, 150);
-      });
-      lightbox.addEventListener('click', function(e) {
-        if (e.target === lightbox) {
-          lightbox.classList.remove('is-open');
-          document.body.style.overflow = '';
+            const modal = document.getElementById('success-modal');
+            modal.classList.remove('hidden');
+            document.getElementById('booking-form').reset();
         }
-      });
-      document.addEventListener('keydown', function(e) {
-        if (!lightbox.classList.contains('is-open')) return;
-        if (e.key === 'Escape') { lightbox.classList.remove('is-open'); document.body.style.overflow = ''; }
-        if (e.key === 'ArrowRight') lightboxNext.click();
-        if (e.key === 'ArrowLeft') lightboxPrev.click();
-      });
-      var touchStartX = 0;
-      lightbox.addEventListener('touchstart', function(e) { touchStartX = e.changedTouches[0].screenX; }, { passive: true });
-      lightbox.addEventListener('touchend', function(e) {
-       var diff = touchStartX - e.changedTouches[0].screenX;
-        if (Math.abs(diff) > 50) { if (diff > 0) lightboxNext.click(); else lightboxPrev.click(); }
-      }, { passive: true });
 
-      var reviewsTrack = document.querySelector('.reviews__track');
-     var reviewsPrev = document.querySelector('.reviews__btn--prev');
-      var reviewsNext = document.querySelector('.reviews__btn--next');
-      var reviewCards = document.querySelectorAll('.review-card');
-      var reviewIndex = 0;
-      var cardsPerView = 3;
-      function updateCardsPerView() {
-        if (window.innerWidth <= 768) cardsPerView = 1;
-        else if (window.innerWidth <= 1024) cardsPerView = 2;
-        else cardsPerView = 3;
-     }
-      function getMaxIndex() { return Math.max(0, reviewCards.length - cardsPerView); }
-      function updateSlider() {
-       updateCardsPerView();
-        if (reviewIndex > getMaxIndex()) reviewIndex = getMaxIndex();
-        var offset = reviewIndex * (100 / cardsPerView);
-        reviewsTrack.style.transform = 'translateX(-' + offset + '%)';
-      }
-      reviewsPrev.addEventListener('click', function() { if (reviewIndex > 0) { reviewIndex--; updateSlider(); } });
-      reviewsNext.addEventListener('click', function() { if (reviewIndex < getMaxIndex()) { reviewIndex++; updateSlider(); } });
-      var reviewTouchStartX = 0;
-      reviewsTrack.addEventListener('touchstart', function(e) { reviewTouchStartX = e.changedTouches[0].screenX; }, { passive: true });
-      reviewsTrack.addEventListener('touchend', function(e) {
-        var diff = reviewTouchStartX - e.changedTouches[0].screenX;
-        if (Math.abs(diff) > 50) {
-          if (diff > 0 && reviewIndex < getMaxIndex()) reviewIndex++;
-          else if (diff < 0 && reviewIndex > 0) reviewIndex--;
-          updateSlider();
+        function closeSuccessModal() {
+            document.getElementById('success-modal').classList.add('hidden');
         }
-      }, { passive: true });
-      window.addEventListener('resize', updateSlider);
-
-      var animatedElements = document.querySelectorAll('.animate-on-scroll');
-      var observer = new IntersectionObserver(function(entries) {
-        entries.forEach(function(entry) {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('is-visible');
-            observer.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-      animatedElements.forEach(function(el) { observer.observe(el); });
-      document.querySelectorAll('.stats__item, .portfolio__item, .process__step, .why__item, .review-card, .contact__link').forEach(function(el) {
-        el.classList.add('animate-on-scroll');
-      });
-
-      updateSlider();
-      lightboxImg.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
-    })();
-  </script>
+    </script>
 </body>
 </html>
